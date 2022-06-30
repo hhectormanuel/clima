@@ -1,0 +1,66 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+<div style="background-color: #4B515D;">
+<form class="form-inline" method="post">
+    {% csrf_token %}
+    <br>
+    <div class="form-group mx-sm-3 mb-2">
+        <input type="text" class="form-control"  placeholder="City" name="ciudad">
+      </div>
+    <div class="form-group mx-sm-3 mb-2">
+      <input type="text" class="form-control"  placeholder="Country" name="pais">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Weather</button>
+  </form>
+</div>
+
+{% if clima %}
+<section class="vh-100" style="background-color: #4B515D;">
+    <div class="container py-5 h-100">
+  
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-8 col-lg-6 col-xl-4">
+            
+  
+          <div class="card" style="color: #4B515D; border-radius: 35px;">
+            <div class="card-body p-4">
+  
+              <div class="d-flex">
+                <h6 class="flex-grow-1">{{clima.location.name}}, {{clima.location.region}}</h6>
+                <h6>{{clima.location.localtime}}</h6>
+              </div>
+  
+              <div class="d-flex flex-column text-center mt-5 mb-4">
+                <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;"> {{clima.current.temp_c}}°C </h6>
+                <span class="small" style="color: #868B94">{{clima.current.condition.text}}</span>
+              </div>
+  
+              <div class="d-flex align-items-center">
+                <div class="flex-grow-1" style="font-size: 1rem;">
+                  <div><i class="fas fa-wind fa-fw" style="color: #868B94;"></i> <span class="ms-1"> {{clima.current.wind_kph}} km/h
+                    </span></div>
+                  <div><i class="fas fa-tint fa-fw" style="color: #868B94;"></i> <span class="ms-1"> {{clima.current.humidity}}% </span>
+                  </div>
+                  <div><i class="fas fa-sun fa-fw" style="color: #868B94;"></i> <span class="ms-1"> 0.2h </span>
+                  </div>
+                </div>
+                <div>
+                    <img src="https://{{url}}"
+                    width="100px">
+                </div>
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </section>
+
+{% endif %}
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
