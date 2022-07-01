@@ -34,16 +34,14 @@ class Clima(View):
         ip2 = request.META.get('REMOTE_ADDR')
         print(ip, ip2)
         a = requests.get('http://ip-api.com/json/{}'.format(ip))
-        #lugar = '{} {}'.format(a.json()['city'], a.json()['country'])
-        #lat_lon = '{} {}'.format(a.json()['lat'], a.json()['lon'])
+        lugar = '{} {}'.format(a.json()['city'], a.json()['country'])
+        lat_lon = '{} {}'.format(a.json()['lat'], a.json()['lon'])
         lat_lon = 'tepic'
         r = requests.get('http://api.weatherapi.com/v1/current.json?key=96c63a37cdc44b97b31163129223006&q={}'.format(lat_lon))
         imgurl = r.json()['current']['condition']['icon'].replace('//', '')
         context = {
             'clima': r.json(),
             'url': imgurl,
-            'ip' : ip,
-            'ip2' : ip2
         }
 
         return render(request, 'index.html', context)
