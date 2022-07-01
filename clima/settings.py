@@ -57,6 +57,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+IPINFO_TOKEN = 'c0a47a16af17c8'
+
 ROOT_URLCONF = 'clima.urls'
 
 TEMPLATES = [

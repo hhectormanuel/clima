@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import Clima
+from .views import Clima, Clima2
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Clima.as_view()),
+    #path('clima/', Clima2.as_view()),
+    
+
 ]
