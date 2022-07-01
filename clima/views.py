@@ -31,17 +31,14 @@ class Clima2(View):
 class Clima(View):
     def get(self, request):
         ip = request.META.get('HTTP_X_FORWARDED_FOR')
-        ip2 = request.META.get('REMOTE_ADDR')
-        a = requests.get('http://ip-api.com/json/')
+        a = requests.get('http://ip-api.com/json/{}'.format(ip))
         lugar = '{} {}'.format(a.json()['city'], a.json()['country'])
         lat_lon = '{} {}'.format(a.json()['lat'], a.json()['lon'])
-        r = requests.get('http://api.weatherapi.com/v1/current.json?key=96c63a37cdc44b97b31163129223006&q={}'.format(lat_lon))
+        r = requests.get('http://api.weatherapi.com/v1/current.json?key=96c63a37cdc44b97b31163129223006&q={}'.format(lugar))
         imgurl = r.json()['current']['condition']['icon'].replace('//', '')
         context = {
             'clima': r.json(),
             'url': imgurl,
-            'a': ip,
-            'b': ip2
         }
 
         return render(request, 'index.html', context)
